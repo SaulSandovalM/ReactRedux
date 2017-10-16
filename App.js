@@ -70,9 +70,16 @@ export default class App extends Component < {} > {
           {instructions}
         </Text>
         <View>
-          {lista.map((i, index) => <Text style={i.tachado
-            ? styles.tachado
-            : null} onPress={() => this.tachado(i)} key={index}>{i.name}</Text>)}
+          {lista.map((i, index) => {
+            return (
+              <View style={styles.flexPadre} key={index}>
+                <Text style={i.tachado
+                ? styles.tachado
+                : null} onPress={() => this.tachado(i)} key={index}>{i.name}</Text>
+                <Button onPress={() => this.remove(i)} title="X" color="red"/>
+              </View>
+            )
+          })}
         </View>
       </View>
     );
@@ -98,5 +105,10 @@ const styles = StyleSheet.create({
   },
   tachado: {
     textDecorationLine: 'line-through'
+  },
+  flexPadre: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });

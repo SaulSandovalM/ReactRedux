@@ -13,16 +13,15 @@ export default function listaReducer(state=initialState.lista, action){
 
     case "TACHADO_ITEM_LIST":
       // let item = Object.assign({}, action.item);
-      let item = action.item;
-      item.tachado = !item.tachado;
-      const nuevaLista = state.map(i=>{
+      // let item = action.item;
+      // item.tachado = !item.tachado;
+      return state.map(i=>{
         if(i.id === action.item.id){
-          return item;
+          return action.item;
         } else {
           return i;
         }
       });
-      return nuevaLista;
 
     default:
       return state;
