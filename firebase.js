@@ -1,45 +1,37 @@
 import * as firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyAtvOAx_ys2BK3SlN7Gn9VORa7E3S4LDr4",
-    authDomain: "reactnotificacion.firebaseapp.com",
-    databaseURL: "https://reactnotificacion.firebaseio.com",
-    projectId: "reactnotificacion",
-    storageBucket: "reactnotificacion.appspot.com",
-    messagingSenderId: "614596991281"
-  };
-  firebase.initializeApp(config);
+  apiKey: "AIzaSyBb-2zYHdbZEvn15JS-ZAaFED-Ua4hZ170",
+  authDomain: "hardcoders-8009a.firebaseapp.com",
+  databaseURL: "https://hardcoders-8009a.firebaseio.com",
+  projectId: "hardcoders-8009a",
+  storageBucket: "hardcoders-8009a.appspot.com",
+  messagingSenderId: "870141507248"
+};
+firebase.initializeApp(config);
 
-  export default firebase;
+export default firebase;
 
-export function toogleTachado(item){
+export function toogleTachado(item) {
   item['tachado'] = !item.tachado;
   let updates = {};
   updates['lista/' + item.id] = item;
-  return firebase.database().ref().update(updates)
-  .then(r=>{
+  return firebase.database().ref().update(updates).then(r => {
     return item;
-  })
-  .catch(e=>console.log(e))
+  }).catch(e => console.log(e))
 }
 
-
-export function saveItem(item){
-  return firebase.database().ref('lista')
-  .push(item)
-  .then(s=>{
+export function saveItem(item) {
+  return firebase.database().ref('lista').push(item).then(s => {
     item['id'] = s.key;
     return item;
-  })
-  .catch(e=>console.log(e))
+  }).catch(e => console.log(e))
 }
 
-export function removeItem(item){
+export function removeItem(item) {
   let updates = {};
-  updates['lista/' +item.id] = null;
-  firebase.database().ref().update(updates)
-  .then(s=>{
+  updates['lista/' + item.id] = null;
+  return firebase.database().ref().update(updates).then(s => {
     return;
-  })
-  .catch(e=>console.log(e))
+  }).catch(e => console.log(e))
 }

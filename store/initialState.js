@@ -1,6 +1,6 @@
 const initialState = {
   lista: [
-    
+    // {name: 'perro'}
   ]
 };
 

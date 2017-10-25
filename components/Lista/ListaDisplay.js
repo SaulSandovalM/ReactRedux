@@ -6,16 +6,24 @@ const imagen = "https://thumbs.gfycat.com/ApprehensiveOddballAgama-max-1mb.gif"
 
 let elInput = '';
 
-function formatear(string){
-  return {id:string, name:string, tachado: false}
+function formatear(string) {
+  return {id: string, name: string, tachado: false}
 }
 
-export const ListaDisplay = ({guardar, instructions, lista, tachado, remove, alertar, fetched}) => (
+export const ListaDisplay = ({
+  guardar,
+  instructions,
+  lista,
+  tachado,
+  remove,
+  alertar,
+  fetched
+}) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>
       Agrega un nombre nuevo
     </Text>
-    <TextInput placeholder="Escribe tu nombre" ref={input => elInput = input} onChangeText={text => elInput=text}/>
+    <TextInput placeholder="Escribe tu nombre" ref={input => elInput = input} onChangeText={text => elInput = text}/>
     <Button title="Guardar" onPress={() => guardar(formatear(elInput))}/>
     <Text style={styles.instructions}>
       lista de cosas por hacer
@@ -24,22 +32,24 @@ export const ListaDisplay = ({guardar, instructions, lista, tachado, remove, ale
       {instructions}
     </Text>
 
-    {fetched ?
-
-    <View>
-      {lista.map((i, index) => {
-        return (
-          <View style={styles.flexPadre} key={index}>
-            <Text style={i.tachado
-            ? styles.tachado
-            : null} onPress={() => tachado(i)} key={index}>{i.name}</Text>
-          <Button onPress={() => {remove(i); alertar(i);}} title="X" color="red"/>
-          </View>
-        )
-      })}
-    </View>
-    : <Image source={{uri: imagen}} style={{height: '50%', width: '50%'}}/>
-  }
+    {fetched
+      ? <View>
+          {lista.map((i, index) => {
+            return (
+              <View style={styles.flexPadre} key={index}>
+                <Text style={i.tachado
+                  ? styles.tachado
+                  : null} onPress={() => tachado(i)} key={index}>{i.name}</Text>
+                <Button onPress={() => {
+                  remove(i);
+                  alertar(i);
+                }} title="X" color="red"/>
+              </View>
+            )
+          })}
+        </View>
+      : <Image source={{uri: imagen}} style={styles.img}/>
+    }
   </View>
 );
 
@@ -82,5 +92,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  img: {
+    height: '50%',
+    width: '50%'
   }
 });

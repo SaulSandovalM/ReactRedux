@@ -5,14 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button
-} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
 import {store} from './index';
 import * as listaActions from './actions/listaActions';
 
@@ -91,12 +84,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: 'black'
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
   },
   instructions: {
     textAlign: 'center',
